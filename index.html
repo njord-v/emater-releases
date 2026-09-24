@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Emater Finder — Fast file search for video editors</title>
+  <meta name="description" content="Emater Finder is a fast Windows file search and media preview tool built for video editors.">
+  <style>
+    :root{
+      color-scheme:dark;
+      --bg:#07090d;--panel:rgba(255,255,255,.055);--line:rgba(255,255,255,.09);
+      --text:#f4f6f8;--muted:#9ea7b3;--accent:#6da8ff;--accent2:#8c7cff;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;min-height:100vh;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);
+      background:
+        radial-gradient(900px 500px at 72% 15%,rgba(87,118,255,.18),transparent 60%),
+        radial-gradient(700px 500px at 22% 5%,rgba(63,163,255,.11),transparent 58%),
+        linear-gradient(180deg,#090c12 0%,#07090d 100%);
+    }
+    a{color:inherit}
+    .wrap{max-width:1120px;margin:auto;padding:0 24px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0}
+    .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em}
+    .logo{
+      width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 30px rgba(87,118,255,.28)
+    }
+    .navlink{color:var(--muted);text-decoration:none;font-size:14px}
+    .hero{padding:90px 0 74px;text-align:center}
+    .pill{
+      display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border-radius:999px;
+      border:1px solid var(--line);background:var(--panel);color:#cbd3dc;font-size:13px
+    }
+    h1{font-size:clamp(44px,8vw,78px);line-height:.98;letter-spacing:-.055em;margin:24px auto 22px;max-width:900px}
+    .lead{font-size:clamp(18px,2.5vw,23px);line-height:1.55;color:var(--muted);max-width:720px;margin:0 auto 34px}
+    .actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+    .btn{
+      text-decoration:none;padding:14px 20px;border-radius:13px;font-weight:700;display:inline-flex;
+      align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);min-width:190px
+    }
+    .primary{background:linear-gradient(135deg,#78b3ff,#766dff);color:white;border:0;box-shadow:0 12px 40px rgba(100,114,255,.25)}
+    .secondary{background:var(--panel);color:#d8dee7}
+    .sub{margin-top:15px;color:#7f8996;font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:30px 0 90px}
+    .card{
+      padding:24px;border-radius:20px;border:1px solid var(--line);background:var(--panel);
+      backdrop-filter:blur(14px)
+    }
+    .icon{font-size:23px;margin-bottom:16px}
+    .card h3{margin:0 0 9px;font-size:17px}
+    .card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+    .privacy{
+      margin:0 0 80px;padding:30px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.035);
+      display:flex;gap:22px;justify-content:space-between;align-items:center
+    }
+    .privacy h2{margin:0 0 7px;font-size:22px}
+    .privacy p{margin:0;color:var(--muted);line-height:1.55}
+    footer{border-top:1px solid var(--line);padding:26px 0 34px;color:#798391;font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    footer a{text-decoration:none}
+    @media(max-width:780px){
+      .hero{padding-top:58px}.grid{grid-template-columns:1fr}.privacy{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><div class="logo">E</div><span>Emater Finder</span></div>
+      <a class="navlink" href="https://github.com/njord-v/emater-releases/releases">Release notes</a>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="pill">⚡ Built for fast video workflows</div>
+        <h1>Find any file.<br>Stay in the edit.</h1>
+        <p class="lead">Instant Windows file search with media thumbnails, previews and editor-focused filters — built to keep footage, audio and project files one search away.</p>
+        <div class="actions">
+          <a id="download" class="btn primary" href="https://github.com/njord-v/emater-releases/releases/latest">Download for Windows</a>
+          <a class="btn secondary" href="https://github.com/njord-v/emater-releases/releases/latest">View latest release</a>
+        </div>
+        <div id="version" class="sub">Checking latest version…</div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <div class="icon">⌕</div>
+          <h3>Instant search</h3>
+          <p>Search indexed drives quickly without relying on Windows Search. Live updates keep results current.</p>
+        </article>
+        <article class="card">
+          <div class="icon">▶</div>
+          <h3>Media-first</h3>
+          <p>Preview video, images and audio, see thumbnails and metadata, and filter by orientation or resolution.</p>
+        </article>
+        <article class="card">
+          <div class="icon">↗</div>
+          <h3>Editor workflow</h3>
+          <p>Find assets fast and drag files straight into your editing workflow without digging through folders.</p>
+        </article>
+      </section>
+
+      <section class="privacy">
+        <div>
+          <h2>Your files stay on your PC.</h2>
+          <p>Emater indexes and searches locally. Your index, settings, exclusions and shortcuts remain on your machine.</p>
+        </div>
+        <div class="pill">Automatic updates included</div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 Emater Finder</span>
+      <span><a href="https://github.com/njord-v/emater-releases/releases">Releases</a></span>
+    </footer>
+  </div>
+
+  <script>
+    (async () => {
+      const version = document.getElementById('version');
+      const download = document.getElementById('download');
+      try {
+        const res = await fetch('https://api.github.com/repos/njord-v/emater-releases/releases/latest', {
+          headers: {'Accept':'application/vnd.github+json'}
+        });
+        if (!res.ok) throw new Error('GitHub API unavailable');
+        const release = await res.json();
+        const exe = (release.assets || []).find(a => /\.exe$/i.test(a.name));
+        const tag = (release.tag_name || '').replace(/^v/i,'');
+        if (exe) download.href = exe.browser_download_url;
+        version.textContent = tag ? 'Latest version ' + tag + ' • Windows' : 'Latest Windows release';
+      } catch (e) {
+        version.textContent = 'Latest Windows release';
+      }
+    })();
+  </script>
+</body>
+</html>
