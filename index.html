@@ -1,140 +1,275 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Emater Finder — Fast file search for video editors</title>
-  <meta name="description" content="Emater Finder is a fast Windows file search and media preview tool built for video editors.">
-  <style>
-    :root{
-      color-scheme:dark;
-      --bg:#07090d;--panel:rgba(255,255,255,.055);--line:rgba(255,255,255,.09);
-      --text:#f4f6f8;--muted:#9ea7b3;--accent:#6da8ff;--accent2:#8c7cff;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;min-height:100vh;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);
-      background:
-        radial-gradient(900px 500px at 72% 15%,rgba(87,118,255,.18),transparent 60%),
-        radial-gradient(700px 500px at 22% 5%,rgba(63,163,255,.11),transparent 58%),
-        linear-gradient(180deg,#090c12 0%,#07090d 100%);
-    }
-    a{color:inherit}
-    .wrap{max-width:1120px;margin:auto;padding:0 24px}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:28px 0}
-    .brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.02em}
-    .logo{
-      width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 30px rgba(87,118,255,.28)
-    }
-    .navlink{color:var(--muted);text-decoration:none;font-size:14px}
-    .hero{padding:90px 0 74px;text-align:center}
-    .pill{
-      display:inline-flex;gap:8px;align-items:center;padding:7px 11px;border-radius:999px;
-      border:1px solid var(--line);background:var(--panel);color:#cbd3dc;font-size:13px
-    }
-    h1{font-size:clamp(44px,8vw,78px);line-height:.98;letter-spacing:-.055em;margin:24px auto 22px;max-width:900px}
-    .lead{font-size:clamp(18px,2.5vw,23px);line-height:1.55;color:var(--muted);max-width:720px;margin:0 auto 34px}
-    .actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
-    .btn{
-      text-decoration:none;padding:14px 20px;border-radius:13px;font-weight:700;display:inline-flex;
-      align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);min-width:190px
-    }
-    .primary{background:linear-gradient(135deg,#78b3ff,#766dff);color:white;border:0;box-shadow:0 12px 40px rgba(100,114,255,.25)}
-    .secondary{background:var(--panel);color:#d8dee7}
-    .sub{margin-top:15px;color:#7f8996;font-size:13px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:30px 0 90px}
-    .card{
-      padding:24px;border-radius:20px;border:1px solid var(--line);background:var(--panel);
-      backdrop-filter:blur(14px)
-    }
-    .icon{font-size:23px;margin-bottom:16px}
-    .card h3{margin:0 0 9px;font-size:17px}
-    .card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
-    .privacy{
-      margin:0 0 80px;padding:30px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.035);
-      display:flex;gap:22px;justify-content:space-between;align-items:center
-    }
-    .privacy h2{margin:0 0 7px;font-size:22px}
-    .privacy p{margin:0;color:var(--muted);line-height:1.55}
-    footer{border-top:1px solid var(--line);padding:26px 0 34px;color:#798391;font-size:13px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
-    footer a{text-decoration:none}
-    @media(max-width:780px){
-      .hero{padding-top:58px}.grid{grid-template-columns:1fr}.privacy{align-items:flex-start;flex-direction:column}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Emater Finder — Find and preview files instantly</title>
+<meta name="description" content="Fast Windows file search with rich video, image, audio and document previews for editors.">
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#06080d;--panel:#0a1018;--panel2:#0d1521;--line:rgba(255,255,255,.08);
+  --text:#f4f7fb;--muted:#98a5b5;--blue:#32a7ff;--violet:#795bff
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);
+  background:
+    radial-gradient(850px 520px at 77% 0%,rgba(73,105,255,.16),transparent 60%),
+    radial-gradient(680px 470px at 10% 8%,rgba(40,157,255,.09),transparent 60%),
+    linear-gradient(180deg,#080b11,#06080d)
+}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}
+nav{height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.05)}
+.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:800;letter-spacing:-.03em}
+.logo{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--violet),var(--blue));font-weight:900;box-shadow:0 8px 28px rgba(88,104,255,.26)}
+.links{display:flex;gap:27px;color:#c1cad5;font-size:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:46px;padding:0 18px;border-radius:13px;border:1px solid var(--line);background:rgba(255,255,255,.035);font-weight:700;font-size:14px}
+.btn.primary{border:0;background:linear-gradient(135deg,#2aa5ff,#7b5aff);box-shadow:0 12px 36px rgba(80,106,255,.28)}
+.hero{display:grid;grid-template-columns:.78fr 1.22fr;gap:36px;align-items:center;padding:76px 0 64px}
+.eyebrow{font-size:12px;letter-spacing:.22em;color:#7ac7ff;font-weight:800;margin-bottom:18px}
+h1{font-size:clamp(50px,6vw,76px);line-height:.96;letter-spacing:-.06em;margin:0 0 22px}
+.grad{background:linear-gradient(90deg,#30a8ff,#8061ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;line-height:1.65;color:#bac4d1;max-width:560px;margin-bottom:30px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.meta{margin-top:14px;color:#7e8a98;font-size:13px}
+.app{border:1px solid rgba(95,145,255,.24);border-radius:24px;overflow:hidden;background:#0a111a;box-shadow:0 34px 100px rgba(0,0,0,.45)}
+.appbar{height:52px;display:flex;align-items:center;padding:0 15px;gap:10px;border-bottom:1px solid var(--line)}
+.dotlogo{width:22px;height:22px;border-radius:7px;background:linear-gradient(135deg,var(--violet),var(--blue))}
+.appname{font-size:13px;font-weight:700}.win{margin-left:auto;color:#6c7888;letter-spacing:.4em}
+.appbody{display:grid;grid-template-columns:1fr 310px;min-height:432px}
+.browser{padding:14px;border-right:1px solid var(--line)}
+.search{height:42px;border:1px solid rgba(90,139,255,.24);background:#0b1420;border-radius:12px;padding:0 13px;display:flex;align-items:center;margin-bottom:12px;color:#dce7f4;font-size:13px}
+.tabs{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.tab{font-size:10px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#0d1622;color:#91a0b2}
+.tab.active{background:rgba(54,134,255,.17);border-color:#397eff;color:white}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.card{padding:8px;border:1px solid var(--line);border-radius:12px;background:#0a111a}
+.card.active{border-color:#745eff;box-shadow:0 0 0 1px rgba(71,146,255,.25)}
+.thumb{width:100%;height:79px;object-fit:cover;border-radius:9px;display:block}
+.fname{font-size:10px;font-weight:650;margin-top:7px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fmeta{font-size:9px;color:#748093;margin-top:3px}
+.preview{padding:14px;background:#08101a}
+.preview-screen{height:190px;width:100%;object-fit:cover;border-radius:12px;display:block}
+.controls{display:flex;align-items:center;gap:8px;margin:10px 0}
+.play{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--violet));display:grid;place-items:center;font-size:11px}
+.timeline{height:4px;background:#233144;border-radius:20px;flex:1;overflow:hidden}
+.timeline i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--violet));animation:seek 4s linear infinite}
+@keyframes seek{from{width:8%}to{width:87%}}
+.preview h3{font-size:14px;margin:14px 0 10px}
+.details{display:grid;grid-template-columns:auto 1fr;gap:7px 12px;color:#8290a2;font-size:10px}.details b{color:#d7dfe9;font-weight:500}
+.section{padding:78px 0 30px}
+.section-head{text-align:center;max-width:780px;margin:0 auto 30px}
+.section-head h2{font-size:40px;letter-spacing:-.05em;margin:0 0 12px}
+.section-head p{color:#909cad;line-height:1.6;margin:0}
+.showcase{border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,#0b121c,#081018);padding:20px;box-shadow:0 25px 80px rgba(0,0,0,.3)}
+.preview-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.preview-tabs button{border:1px solid var(--line);background:#0d1622;color:#9ca9b8;border-radius:999px;padding:8px 14px;cursor:pointer;font:inherit;font-size:12px}
+.preview-tabs button.active{color:white;background:linear-gradient(135deg,rgba(46,157,255,.25),rgba(120,84,255,.28));border-color:rgba(101,120,255,.6)}
+.stage{display:grid;grid-template-columns:280px 1fr;gap:18px}
+.filelist{border:1px solid var(--line);border-radius:16px;padding:12px;background:#090f17}
+.fileitem{display:flex;gap:10px;align-items:center;padding:9px;border-radius:11px;margin-bottom:6px;border:1px solid transparent;cursor:pointer;transition:.2s}
+.fileitem.active{background:rgba(67,125,255,.10);border-color:rgba(83,140,255,.24)}
+.mini-thumb{width:56px;height:42px;border-radius:8px;object-fit:cover}
+.filetxt strong{display:block;font-size:11px}.filetxt span{display:block;font-size:9px;color:#7d8998;margin-top:4px}
+.viewer{min-height:430px;border:1px solid var(--line);border-radius:18px;background:#080e15;overflow:hidden;padding:20px}
+.viewer-pane{display:none;height:100%}.viewer-pane.active{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:.2;transform:translateY(7px)}to{opacity:1;transform:none}}
+.video-frame,.image-frame{height:300px;width:100%;object-fit:cover;border-radius:14px;display:block}
+.video-wrap{position:relative}.video-wrap:after{content:"▶";position:absolute;inset:0;display:grid;place-items:center;font-size:52px;color:white;text-shadow:0 5px 26px rgba(0,0,0,.65);pointer-events:none}
+.image-wrap{position:relative;overflow:hidden;border-radius:14px}.image-wrap img{animation:kenburns 8s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.075) translate(-1.5%,-1%)}}
+.audio-box{height:300px;border-radius:14px;background:linear-gradient(180deg,#0d1621,#081018);display:grid;place-items:center;overflow:hidden;position:relative}
+.audio-box:before{content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1200&q=80') center/cover;filter:blur(18px) brightness(.35);transform:scale(1.15)}
+.audio-content{position:relative;z-index:2;text-align:center}
+.album{width:156px;height:156px;object-fit:cover;border-radius:22px;box-shadow:0 22px 55px rgba(0,0,0,.45)}
+.wave{height:46px;margin-top:13px;display:flex;gap:4px;align-items:center;justify-content:center}
+.wave i{display:block;width:4px;border-radius:4px;background:linear-gradient(var(--blue),var(--violet));animation:wave 1.1s ease-in-out infinite}
+.wave i:nth-child(2){animation-delay:.08s}.wave i:nth-child(3){animation-delay:.16s}.wave i:nth-child(4){animation-delay:.24s}.wave i:nth-child(5){animation-delay:.32s}.wave i:nth-child(6){animation-delay:.40s}.wave i:nth-child(7){animation-delay:.48s}
+@keyframes wave{0%,100%{height:10px}50%{height:42px}}
+.doc-wrap{height:330px;display:grid;place-items:center;background:linear-gradient(135deg,#0c141f,#0a1018);border-radius:14px;overflow:hidden}
+.doc{width:min(78%,480px);height:300px;background:#f2f5f8;color:#26303d;border-radius:9px;padding:28px 34px;box-shadow:0 20px 55px rgba(0,0,0,.38);transform:rotate(-1deg)}
+.doc h4{font-size:21px;margin:0 0 18px}.doc p{height:8px;background:#c4cbd4;border-radius:10px;margin:10px 0}.doc p:nth-child(3){width:84%}.doc p:nth-child(4){width:72%}.doc p:nth-child(5){width:91%}.doc p:nth-child(6){width:63%}.doc p:nth-child(7){width:81%}
+.viewer-meta{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:14px}.viewer-meta strong{font-size:13px}.viewer-meta span{font-size:11px;color:#7e8b9c}
+.demo-strip{margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.demo{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#0a111a}
+.demo-media{height:170px;position:relative;overflow:hidden;background:#080f17}
+.demo-media img{width:100%;height:100%;object-fit:cover;display:block}
+.demo.search-demo .demo-media img{animation:reveal 4s infinite}
+@keyframes reveal{0%,22%{filter:blur(5px);opacity:.2;transform:scale(1.04)}42%,82%{filter:none;opacity:1;transform:none}100%{filter:blur(5px);opacity:.2;transform:scale(1.04)}}
+.demo.drag-demo .moving{position:absolute;width:92px;height:70px;right:20px;bottom:18px;border-radius:10px;overflow:hidden;border:2px solid #805cff;animation:drag 4s infinite;box-shadow:0 15px 35px rgba(0,0,0,.35)}
+.demo.drag-demo .moving img{width:100%;height:100%;object-fit:cover}
+@keyframes drag{0%,22%{transform:translate(-190px,-48px)}65%,88%{transform:translate(0,0)}100%{transform:translate(-190px,-48px)}}
+.pr{position:absolute;right:17px;top:18px;width:46px;height:46px;border-radius:11px;background:#2d1648;border:1px solid #8054ff;display:grid;place-items:center;color:#d3a4ff;font-weight:900}
+.demo-text{padding:16px}.demo-text strong{font-size:14px}.demo-text span{display:block;font-size:11px;color:#8491a1;margin-top:6px;line-height:1.5}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:26px 0 82px}
+.feature{border:1px solid var(--line);border-radius:18px;padding:20px;background:#0a111a}.feature h3{font-size:15px;margin:14px 0 7px}.feature p{color:#8491a2;font-size:12px;line-height:1.55;margin:0}
+.ico{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;background:rgba(64,139,255,.12);border:1px solid rgba(84,145,255,.22)}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;display:flex;justify-content:space-between;color:#768292;font-size:12px}
+@media(max-width:980px){.links{display:none}.hero{grid-template-columns:1fr}.stage{grid-template-columns:1fr}.filelist{display:grid;grid-template-columns:repeat(2,1fr)}.features,.demo-strip{grid-template-columns:1fr}.appbody{grid-template-columns:1fr}.preview{display:none}}
+@media(max-width:620px){.wrap{padding:0 14px}.grid{grid-template-columns:repeat(2,1fr)}.filelist{grid-template-columns:1fr}.hero{padding-top:48px}.section-head h2{font-size:34px}}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <nav>
-      <div class="brand"><div class="logo">E</div><span>Emater Finder</span></div>
-      <a class="navlink" href="https://github.com/njord-v/emater-releases/releases">Release notes</a>
-    </nav>
+<div class="wrap">
+<nav>
+  <div class="brand"><div class="logo">E</div>Emater Finder</div>
+  <div class="links"><a href="#previews">Previews</a><a href="#features">Features</a><a href="#download">Download</a></div>
+  <a class="btn primary" href="https://github.com/njord-v/emater-releases/releases/latest">▣ Download for Windows</a>
+</nav>
 
-    <main>
-      <section class="hero">
-        <div class="pill">⚡ Built for fast video workflows</div>
-        <h1>Find any file.<br>Stay in the edit.</h1>
-        <p class="lead">Instant Windows file search with media thumbnails, previews and editor-focused filters — built to keep footage, audio and project files one search away.</p>
-        <div class="actions">
-          <a id="download" class="btn primary" href="https://github.com/njord-v/emater-releases/releases/latest">Download for Windows</a>
-          <a class="btn secondary" href="https://github.com/njord-v/emater-releases/releases/latest">View latest release</a>
-        </div>
-        <div id="version" class="sub">Checking latest version…</div>
-      </section>
-
-      <section class="grid">
-        <article class="card">
-          <div class="icon">⌕</div>
-          <h3>Instant search</h3>
-          <p>Search indexed drives quickly without relying on Windows Search. Live updates keep results current.</p>
-        </article>
-        <article class="card">
-          <div class="icon">▶</div>
-          <h3>Media-first</h3>
-          <p>Preview video, images and audio, see thumbnails and metadata, and filter by orientation or resolution.</p>
-        </article>
-        <article class="card">
-          <div class="icon">↗</div>
-          <h3>Editor workflow</h3>
-          <p>Find assets fast and drag files straight into your editing workflow without digging through folders.</p>
-        </article>
-      </section>
-
-      <section class="privacy">
-        <div>
-          <h2>Your files stay on your PC.</h2>
-          <p>Emater indexes and searches locally. Your index, settings, exclusions and shortcuts remain on your machine.</p>
-        </div>
-        <div class="pill">Automatic updates included</div>
-      </section>
-    </main>
-
-    <footer>
-      <span>© 2026 Emater Finder</span>
-      <span><a href="https://github.com/njord-v/emater-releases/releases">Releases</a></span>
-    </footer>
+<section class="hero">
+  <div>
+    <div class="eyebrow">SEARCH LESS. PREVIEW MORE.</div>
+    <h1>Find files instantly.<br><span class="grad">Preview before you open.</span></h1>
+    <p class="lead">Emater Finder gives video editors instant whole-PC search with built-in previews for video, images, audio and documents — so you can identify the right asset before opening another app.</p>
+    <div class="hero-actions">
+      <a id="download" class="btn primary" href="https://github.com/njord-v/emater-releases/releases/latest">▣ Download for Windows</a>
+      <a class="btn" href="#previews">Explore previews</a>
+    </div>
+    <div id="latest" class="meta">Windows 10 & 11 · Automatic updates · Latest release</div>
   </div>
 
-  <script>
-    (async () => {
-      const version = document.getElementById('version');
-      const download = document.getElementById('download');
-      try {
-        const res = await fetch('https://api.github.com/repos/njord-v/emater-releases/releases/latest', {
-          headers: {'Accept':'application/vnd.github+json'}
-        });
-        if (!res.ok) throw new Error('GitHub API unavailable');
-        const release = await res.json();
-        const exe = (release.assets || []).find(a => /\.exe$/i.test(a.name));
-        const tag = (release.tag_name || '').replace(/^v/i,'');
-        if (exe) download.href = exe.browser_download_url;
-        version.textContent = tag ? 'Latest version ' + tag + ' • Windows' : 'Latest Windows release';
-      } catch (e) {
-        version.textContent = 'Latest Windows release';
-      }
-    })();
-  </script>
+  <div class="app">
+    <div class="appbar"><div class="dotlogo"></div><div class="appname">Emater Finder</div><div class="win">— □ ×</div></div>
+    <div class="appbody">
+      <div class="browser">
+        <div class="search">⌕&nbsp;&nbsp;mountain</div>
+        <div class="tabs"><span class="tab">All</span><span class="tab active">Video</span><span class="tab">Image</span><span class="tab">Audio</span><span class="tab">Documents</span></div>
+        <div class="grid">
+          <div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80"><div class="fname">mountain_drone.mp4</div><div class="fmeta">00:12 · 4K</div></div>
+          <div class="card active"><img class="thumb" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=500&q=80"><div class="fname">alps_4k.mov</div><div class="fmeta">00:28 · 4K</div></div>
+          <div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=80"><div class="fname">timelapse.mp4</div><div class="fmeta">01:04 · 4K</div></div>
+          <div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1483347756197-71ef80e95f73?auto=format&fit=crop&w=500&q=80"><div class="fname">snow_reel.mp4</div><div class="fmeta">00:18 · 9:16</div></div>
+          <div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=500&q=80"><div class="fname">nature_cinematic.mp4</div><div class="fmeta">00:42 · 4K</div></div>
+          <div class="card"><img class="thumb" src="https://images.unsplash.com/photo-1464822759844-d150baec0494?auto=format&fit=crop&w=500&q=80"><div class="fname">mountain_lake.mp4</div><div class="fmeta">00:31 · 4K</div></div>
+        </div>
+      </div>
+      <div class="preview">
+        <img class="preview-screen" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85">
+        <div class="controls"><div class="play">▶</div><div class="timeline"><i></i></div><span style="font-size:9px;color:#788696">00:28</span></div>
+        <h3>alps_4k.mov</h3>
+        <div class="details"><span>Resolution</span><b>3840 × 2160</b><span>Duration</span><b>00:28</b><span>Size</span><b>427 MB</b><span>Type</span><b>MOV</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="previews" class="section">
+  <div class="section-head">
+    <h2>Preview the file before opening it</h2>
+    <p>This is the heart of Emater. Click through media-style previews for video, images, audio and documents directly on the page.</p>
+  </div>
+
+  <div class="showcase">
+    <div class="preview-tabs">
+      <button class="active" data-pane="video">Video preview</button>
+      <button data-pane="image">Image preview</button>
+      <button data-pane="audio">Audio preview</button>
+      <button data-pane="document">Document preview</button>
+    </div>
+
+    <div class="stage">
+      <div class="filelist">
+        <div class="fileitem active" data-pane="video"><img class="mini-thumb" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=240&q=80"><div class="filetxt"><strong>campaign_final.mp4</strong><span>3840×2160 · 00:24</span></div></div>
+        <div class="fileitem" data-pane="image"><img class="mini-thumb" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=240&q=80"><div class="filetxt"><strong>night_city.jpg</strong><span>6000×4000 · JPG</span></div></div>
+        <div class="fileitem" data-pane="audio"><img class="mini-thumb" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=240&q=80"><div class="filetxt"><strong>voiceover_master.wav</strong><span>02:18 · WAV</span></div></div>
+        <div class="fileitem" data-pane="document"><img class="mini-thumb" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=240&q=80"><div class="filetxt"><strong>creative_brief.pdf</strong><span>12 pages · PDF</span></div></div>
+      </div>
+
+      <div class="viewer">
+        <div class="viewer-pane active" id="video">
+          <div class="video-wrap"><img class="video-frame" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1400&q=85"></div>
+          <div class="controls"><div class="play">▶</div><div class="timeline"><i></i></div><span style="font-size:10px;color:#788696">00:24</span></div>
+          <div class="viewer-meta"><div><strong>campaign_final.mp4</strong><br><span>4K video · 1.2 GB</span></div><span>Playable in Emater</span></div>
+        </div>
+
+        <div class="viewer-pane" id="image">
+          <div class="image-wrap"><img class="image-frame" src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1400&q=85"></div>
+          <div class="viewer-meta"><div><strong>night_city.jpg</strong><br><span>6000×4000 · JPG</span></div><span>Fit · 100% · Zoom</span></div>
+        </div>
+
+        <div class="viewer-pane" id="audio">
+          <div class="audio-box">
+            <div class="audio-content">
+              <img class="album" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=500&q=80">
+              <div class="wave"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="controls"><div class="play">▶</div><div class="timeline"><i></i></div><span style="font-size:10px;color:#788696">02:18</span></div>
+          <div class="viewer-meta"><div><strong>voiceover_master.wav</strong><br><span>48 kHz · Stereo</span></div><span>Play without another app</span></div>
+        </div>
+
+        <div class="viewer-pane" id="document">
+          <div class="doc-wrap">
+            <div class="doc"><h4>Creative brief</h4><p></p><p></p><p></p><p></p><p></p><p></p><p></p></div>
+          </div>
+          <div class="viewer-meta"><div><strong>creative_brief.pdf</strong><br><span>12 pages · PDF</span></div><span>Read inside Emater</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-strip">
+      <div class="demo search-demo">
+        <div class="demo-media"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80"></div>
+        <div class="demo-text"><strong>Search → results</strong><span>Media appears immediately as you type.</span></div>
+      </div>
+      <div class="demo">
+        <div class="demo-media"><img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80"></div>
+        <div class="demo-text"><strong>Click → preview</strong><span>Inspect media without leaving the file finder.</span></div>
+      </div>
+      <div class="demo drag-demo">
+        <div class="demo-media"><img src="https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?auto=format&fit=crop&w=900&q=80"><div class="pr">Pr</div><div class="moving"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=300&q=80"></div></div>
+        <div class="demo-text"><strong>Preview → drag</strong><span>Confirm the clip, then drag it toward Premiere.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features" class="features">
+  <article class="feature"><div class="ico">⌕</div><h3>Instant search</h3><p>Search indexed drives quickly and keep results current as files change.</p></article>
+  <article class="feature"><div class="ico">◫</div><h3>Editor-focused filters</h3><p>Filter by orientation, resolution, file type, size and duration.</p></article>
+  <article class="feature"><div class="ico">↗</div><h3>Drag into Premiere</h3><p>Preview the asset first, then move the right file straight into your edit.</p></article>
+</section>
+
+<footer><span>© 2026 Emater Finder</span><span>Find. Preview. Create.</span></footer>
+</div>
+
+<script>
+const btns=[...document.querySelectorAll('.preview-tabs button')];
+const items=[...document.querySelectorAll('.fileitem')];
+const panes=[...document.querySelectorAll('.viewer-pane')];
+const order=['video','image','audio','document'];
+let current=0, timer=null, userPaused=false;
+function setPane(name){
+  current=order.indexOf(name);
+  btns.forEach(b=>b.classList.toggle('active',b.dataset.pane===name));
+  items.forEach(i=>i.classList.toggle('active',i.dataset.pane===name));
+  panes.forEach(p=>p.classList.toggle('active',p.id===name));
+}
+function restartAuto(){
+  clearInterval(timer);
+  timer=setInterval(()=>{ if(!userPaused){ current=(current+1)%order.length; setPane(order[current]); } },3800);
+}
+btns.forEach(b=>b.onclick=()=>{userPaused=true;setPane(b.dataset.pane);setTimeout(()=>userPaused=false,7000)});
+items.forEach(i=>i.onclick=()=>{userPaused=true;setPane(i.dataset.pane);setTimeout(()=>userPaused=false,7000)});
+restartAuto();
+
+(async()=>{
+  const latest=document.getElementById('latest');
+  const links=[...document.querySelectorAll('a[href*="/releases/latest"]')];
+  try{
+    const r=await fetch('https://api.github.com/repos/njord-v/emater-releases/releases/latest',{headers:{Accept:'application/vnd.github+json'}});
+    if(!r.ok) throw new Error();
+    const data=await r.json();
+    const exe=(data.assets||[]).find(a=>/\.exe$/i.test(a.name));
+    const v=(data.tag_name||'').replace(/^v/i,'');
+    if(exe) links.forEach(a=>a.href=exe.browser_download_url);
+    latest.textContent=`Windows 10 & 11 · Automatic updates · Version ${v||'latest'}`;
+  }catch(e){latest.textContent='Windows 10 & 11 · Automatic updates · Latest release'}
+})();
+</script>
 </body>
 </html>
