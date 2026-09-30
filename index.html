@@ -353,7 +353,7 @@ footer img{height:18px;width:auto}
       <a class="btn btn-primary btn-lg" href="https://github.com/njord-v/emater-releases/releases/latest"><svg class="win-icon" fill="currentColor"><use href="#i-win"/></svg>Download for Windows</a>
       <a class="btn btn-ghost btn-lg" href="#previews">See the previews</a>
     </div>
-    <div class="hero-meta">Windows 10 &amp; 11 · Updates itself · Latest release <span id="ver">v1.0.2</span></div>
+    <div class="hero-meta">Windows 10 &amp; 11 · Updates itself · Latest release <span id="ver">v1.0.3</span></div>
   </div>
 
   <div class="app-stage">
@@ -495,7 +495,7 @@ footer img{height:18px;width:auto}
     <div class="search-copy">
       <span class="eyebrow">SEARCH</span>
       <h2>Filter right in the search box</h2>
-      <p>Plain words match file and folder names. Add a few short filters to narrow thousands of clips down to the one you need.</p>
+      <p>Plain words match file names and folder names, and files whose own name matches come first. Add a few short filters to narrow thousands of clips down to the one you need.</p>
     </div>
     <div>
       <div class="sbar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.5" style="flex-shrink:0"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg><span class="tokens" id="tokens"></span><span class="caret"></span></div>
@@ -533,7 +533,7 @@ footer img{height:18px;width:auto}
           <div class="ghostclip sprite" style="background-position:50% 0"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M1 1l11 7-5 1.2 3 5.3-2 1-3-5.3L1 13z" fill="#fff" stroke="#070b14"/></svg></div>
         </div>
         <h3>Drag files out</h3>
-        <p>Drag any result into Premiere, a folder or another app. Copy the file, its path or its name with one shortcut.</p>
+        <p>Drag any result, or the clip playing in the preview, into Premiere, a folder or another app. Copy the file, its path or its name with one shortcut.</p>
       </article>
       <article class="fcard">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="1.6" aria-hidden="true"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M6 10h1M10 10h1M14 10h1M18 10h1M7 15h10"/></svg>
@@ -562,7 +562,7 @@ footer img{height:18px;width:auto}
       <div><h2>Stop opening files just to check them</h2><p>Install once and search every drive on your PC.</p></div>
       <div class="side2">
         <a class="btn btn-white" href="https://github.com/njord-v/emater-releases/releases/latest"><svg class="win-icon" fill="#1d6bf3"><use href="#i-win"/></svg>Download for Windows</a>
-        <div class="facts"><span>Windows 10 &amp; 11</span><span>Latest release <span id="ver2">v1.0.2</span></span><a href="https://github.com/njord-v/emater-releases/releases">All releases and changelog</a></div>
+        <div class="facts"><span>Windows 10 &amp; 11</span><span>Latest release <span id="ver2">v1.0.3</span></span><a href="https://github.com/njord-v/emater-releases/releases">All releases and changelog</a></div>
       </div>
     </div>
   </div>
@@ -632,6 +632,7 @@ footer img{height:18px;width:auto}
         if (t.charAt(0) === '-' && t.length > 1) { if (hay.indexOf(t.slice(1)) >= 0) return false; continue; }
         if (t.indexOf('ext:') === 0) { var ex = t.slice(4).split(',').filter(Boolean); if (ex.length && !ex.some(function (e) { return i.name.toLowerCase().endsWith('.' + e); })) return false; continue; }
         if (t.indexOf('folder:') === 0) { if (i.path.toLowerCase().indexOf(t.slice(7)) < 0) return false; continue; }
+        if (t.indexOf('file:') === 0 || t.indexOf('name:') === 0) { if (i.name.toLowerCase().indexOf(t.slice(t.indexOf(':') + 1)) < 0) return false; continue; }
         if (t.indexOf(':') >= 0) continue;
         if (hay.indexOf(t) < 0) return false;
       }
@@ -846,13 +847,13 @@ footer img{height:18px;width:auto}
     var b = document.createElement('i'); b.style.height = Math.round(Math.min(v, 1) * 110) + 'px'; wave.insertBefore(b, $('whead')); BARS.push(b);
   }
   var DOCS = [
-    ['RELEASE_1.0.2.txt', "Emater Finder 1.0.2\n\nWhat's new\n- Added a clean About Emater Finder screen with the installed version.\n- Added a direct Check for updates button inside About.\n- Clarified that local index, settings and shortcuts are preserved across app updates.\n\nUpdate system\n- Continues to use the official Emater GitHub release channel.\n- Existing 1.0/1.0.1 installs can update normally through Emater."],
-    ['RELEASE_1.0.1.txt', "Emater Finder 1.0.1 \u2014 Updater Test Release\n\nThis build is ready for team testing and includes the built-in updater.\n\nInstalled program files:\n  C:\\Program Files\\Emater Finder\\\n\nPer-user data is kept separately and is preserved across app updates:\n  %LOCALAPPDATA%\\EmaterFinder\\settings.json\n  %LOCALAPPDATA%\\EmaterFinder\\index.db\n  %LOCALAPPDATA%\\EmaterFinder\\thumbs\\\n  %LOCALAPPDATA%\\EmaterFinder\\usn_state.sqlite\n\nUpdates:\n- Emater checks the public GitHub Releases feed at:\n  njord-v/emater-releases\n- Automatic checks happen at most once per 24 hours.\n- Menu -> Check for updates\u2026 always performs a manual check.\n- A newer stable release can be downloaded and installed from inside Emater."]
+    ['RELEASE_1.0.3.txt', "Emater Finder 1.0.3\n\nFaster, steadier thumbnails\n- Made in parallel; one slow or broken file no longer blocks the rest.\n- No longer disappear after changing sort, filters or view.\n- Keep loading while a clip plays.\n\nSmoother browsing\n- No more jumping back to the top while scrolling or filtering.\n- Your search stays after the app sits in the background.\n\nNew\n- Drag the playing preview straight into Premiere.\n- file:word searches file names only."],
+    ['RELEASE_1.0.2.txt', "Emater Finder 1.0.2\n\nWhat's new\n- Added a clean About Emater Finder screen with the installed version.\n- Added a direct Check for updates button inside About.\n- Clarified that local index, settings and shortcuts are preserved across app updates.\n\nUpdate system\n- Continues to use the official Emater GitHub release channel.\n- Existing 1.0/1.0.1 installs can update normally through Emater."]
   ];
   var docIcon = '<svg width="11" height="12" viewBox="0 0 11 12" fill="none" stroke="#fbbf24" stroke-width="1.2"><path d="M1.5 1h5l3 3v7h-8z M6.5 1v3h3"/></svg>';
   $('dtabs').innerHTML = DOCS.map(function (d) { return '<span>' + docIcon + d[0] + '</span>'; }).join('');
   var TOKENS = [
-    ['"final export"', '#e6ebf5', 'Match an exact phrase'], ['ext:mp4,mov', '#c084fc', 'Only these file types'], ['folder:client', '#60a5fa', 'The path contains "client"'],
+    ['"final export"', '#e6ebf5', 'Match an exact phrase'], ['ext:mp4,mov', '#c084fc', 'Only these file types'], ['folder:client', '#60a5fa', 'The path contains "client"'], ['file:interview', '#a5b4fc', 'Only file names, not folders'],
     ['-proxy', '#f87171', 'Leave out anything with "proxy"'], ['size:>100mb', '#34d399', 'Larger than 100 MB'], ['res:4k', '#38bdf8', '4K footage only'], ['duration:<30s', '#fbbf24', 'Shorter than 30 seconds']
   ];
   function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -890,11 +891,11 @@ footer img{height:18px;width:auto}
       $('dpanel').innerHTML = '<pre class="' + (di === 1 ? 'scroll' : '') + '">' + esc(DOCS[di][1]) + '</pre>';
     }
     // search tokens
-    var ss = Math.floor(t / 1.1) % 11, shown = Math.min(ss, 7);
+    var NT = TOKENS.length, ss = Math.floor(t / 1.1) % (NT + 4), shown = Math.min(ss, NT);
     if (shown !== last.tok) {
       last.tok = shown;
       $('tokens').innerHTML = TOKENS.slice(0, shown).map(function (x) { return '<span style="color:' + x[1] + '">' + esc(x[0]) + '</span>'; }).join('');
-      [].forEach.call($('ttable').children, function (r, i) { r.classList.toggle('on', i === shown - 1 && ss <= 7); r.classList.toggle('seen', i < shown); });
+      [].forEach.call($('ttable').children, function (r, i) { r.classList.toggle('on', i === shown - 1 && ss <= NT); r.classList.toggle('seen', i < shown); });
     }
     // filters card
     var ph = Math.min(Math.floor(t / 1.8) % 5, 3);
