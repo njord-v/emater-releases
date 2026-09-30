@@ -588,9 +588,32 @@ footer img{height:18px;width:auto}
   fit(); window.addEventListener('resize', fit);
 
   /* ---------- show the real latest version from GitHub ---------- */
+  /* Download buttons point at the release page by default (works even if
+     GitHub doesn't answer). Once we know the latest release, they link
+     straight to its installer so one click starts the download. */
+  function pickInstaller(assets) {
+    var best = null, bestScore = -1;
+    (assets || []).forEach(function (a) {
+      var n = String(a.name || '').toLowerCase();
+      if (!/\.exe$/.test(n) || !a.browser_download_url) return;
+      var score = (n.indexOf('ematerfinder-setup-') === 0 ? 10 : 0) + (n.indexOf('setup') >= 0 ? 3 : 0);
+      if (score > bestScore) { best = a; bestScore = score; }
+    });
+    return best;
+  }
   fetch('https://api.github.com/repos/njord-v/emater-releases/releases/latest')
     .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (j) { if (j && j.tag_name) { $('ver').textContent = j.tag_name; $('ver2').textContent = j.tag_name; } })
+    .then(function (j) {
+      if (!j || !j.tag_name) return;
+      $('ver').textContent = j.tag_name; $('ver2').textContent = j.tag_name;
+      var exe = pickInstaller(j.assets);
+      if (!exe) return;
+      [].forEach.call(document.querySelectorAll('a[href="https://github.com/njord-v/emater-releases/releases/latest"]'), function (a) {
+        a.href = exe.browser_download_url;
+        a.setAttribute('download', exe.name);
+        a.title = 'Download ' + exe.name;
+      });
+    })
     .catch(function () {});
 
   /* ---------- demo data ---------- */
