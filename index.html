@@ -353,7 +353,7 @@ footer img{height:18px;width:auto}
       <a class="btn btn-primary btn-lg" href="https://github.com/njord-v/emater-releases/releases/latest"><svg class="win-icon" fill="currentColor"><use href="#i-win"/></svg>Download for Windows</a>
       <a class="btn btn-ghost btn-lg" href="#previews">See the previews</a>
     </div>
-    <div class="hero-meta">Windows 10 &amp; 11 · Updates itself · Latest release <span id="ver">v1.0.3</span></div>
+    <div class="hero-meta">Windows 10 &amp; 11 · Updates itself · Latest release <span id="ver">v1.0.4</span></div>
   </div>
 
   <div class="app-stage">
@@ -495,7 +495,7 @@ footer img{height:18px;width:auto}
     <div class="search-copy">
       <span class="eyebrow">SEARCH</span>
       <h2>Filter right in the search box</h2>
-      <p>Plain words match file names and folder names, and files whose own name matches come first. Add a few short filters to narrow thousands of clips down to the one you need.</p>
+      <p>Plain words match file names and folder names, and files whose own name matches come first. Pick a folder to search only inside it, or add a few short filters to narrow thousands of clips down to the one you need.</p>
     </div>
     <div>
       <div class="sbar" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.5" style="flex-shrink:0"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg><span class="tokens" id="tokens"></span><span class="caret"></span></div>
@@ -562,7 +562,7 @@ footer img{height:18px;width:auto}
       <div><h2>Stop opening files just to check them</h2><p>Install once and search every drive on your PC.</p></div>
       <div class="side2">
         <a class="btn btn-white" href="https://github.com/njord-v/emater-releases/releases/latest"><svg class="win-icon" fill="#1d6bf3"><use href="#i-win"/></svg>Download for Windows</a>
-        <div class="facts"><span>Windows 10 &amp; 11</span><span>Latest release <span id="ver2">v1.0.3</span></span><a href="https://github.com/njord-v/emater-releases/releases">All releases and changelog</a></div>
+        <div class="facts"><span>Windows 10 &amp; 11</span><span>Latest release <span id="ver2">v1.0.4</span></span><a href="https://github.com/njord-v/emater-releases/releases">All releases and changelog</a></div>
       </div>
     </div>
   </div>
@@ -870,6 +870,7 @@ footer img{height:18px;width:auto}
     var b = document.createElement('i'); b.style.height = Math.round(Math.min(v, 1) * 110) + 'px'; wave.insertBefore(b, $('whead')); BARS.push(b);
   }
   var DOCS = [
+    ['RELEASE_1.0.4.txt', "Emater Finder 1.0.4\n\nNew: search in one folder\n- Choose a folder and a chip in the search bar shows where you are searching.\n- Everything you type searches only that folder and its subfolders.\n- Click the X on the chip to search everywhere again."],
     ['RELEASE_1.0.3.txt', "Emater Finder 1.0.3\n\nFaster, steadier thumbnails\n- Made in parallel; one slow or broken file no longer blocks the rest.\n- No longer disappear after changing sort, filters or view.\n- Keep loading while a clip plays.\n\nSmoother browsing\n- No more jumping back to the top while scrolling or filtering.\n- Your search stays after the app sits in the background.\n\nNew\n- Drag the playing preview straight into Premiere.\n- file:word searches file names only."],
     ['RELEASE_1.0.2.txt', "Emater Finder 1.0.2\n\nWhat's new\n- Added a clean About Emater Finder screen with the installed version.\n- Added a direct Check for updates button inside About.\n- Clarified that local index, settings and shortcuts are preserved across app updates.\n\nUpdate system\n- Continues to use the official Emater GitHub release channel.\n- Existing 1.0/1.0.1 installs can update normally through Emater."]
   ];
